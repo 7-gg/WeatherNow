@@ -1,16 +1,34 @@
 # weathernow
 
-A new Flutter project.
+## Objectifs 
+    Développer une application mobile Flutter qui permet aux utilisateurs de
+    rechercher la météo d’une ville et d’obtenir des informations détaillées sur
+    les conditions actuelles ainsi que les prévisions pour les prochains jours.
 
-## Getting Started
+## Technologies 
+    -Flutter
+    -Riverpod 
+    -HTTPS      
+    -OpenWeatherMap API
 
-This project is a starting point for a Flutter application.
+## Installation
+    - installation de flutter 
+        * dossier zip télécharger sur le site officiel
+        * dossier dézippé dans le dossier C
+        * ajout du path dans la variable d'environnement
+    - installation d'android studio + démarrage de l'émulateur
+    - installation du jdk 21 + ajout aux variables d'environnement
+    - flutter doctor 
+    - création de compte OpenWeatherMap pour obtenir la clé API
+    - installation des dépendances (flutter pub get)
+    - utilisation de https pour l'appel api et la récupération des données dans le service
+    - utilisation de riverpod pour     
 
-A few resources to get you started if this is your first Flutter project:
+    - flutter pub run flutter_launcher_icons:main : ajout de l'icon sur l'ecran de l'utilisateur 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## lancer l'application 
+    - flutter run
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Choix techniques
+    - Gestion d'état : Riverpod a été choisi pour sa simplicité et sa scalabilité.
+    - Appels API : Https
