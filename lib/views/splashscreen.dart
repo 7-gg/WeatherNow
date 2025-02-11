@@ -58,44 +58,46 @@ class _SplashScreenState extends State<SplashScreen>
           ColoredBox(
             color: Colors.white38,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Animation du logo
-              AnimatedContainer(
-                duration: const Duration(seconds: 1),
-                width: logoSize,
-                height: logoSize,
-                child: FadeTransition(
-                  opacity: fadeAnimation,
-                  child:
-                      Image.asset('assets/logo.png'), // Remplace par ton logo
-                ),
-              ),
-              Spacer(),
-              // Branding
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: const Text(
-                  "WeatherNow,",
-                  style: TextStyle(
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+          SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Animation du logo
+                AnimatedContainer(
+                  duration: const Duration(seconds: 1),
+                  width: logoSize,
+                  height: logoSize,
+                  child: FadeTransition(
+                    opacity: fadeAnimation,
+                    child:
+                        Image.asset('assets/logo.png'), // Remplace par ton logo
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: const Text(
-                  "la météo a votre portée",
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black38,
+                Spacer(),
+                // Branding
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: const Text(
+                    "WeatherNow,",
+                    style: TextStyle(
+                      fontSize: 34,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: const Text(
+                    "la météo a votre portée",
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.black38,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

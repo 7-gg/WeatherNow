@@ -24,7 +24,8 @@
     - utilisation de https pour l'appel api et la récupération des données dans le service
     - utilisation de riverpod pour     
 
-    - flutter pub run flutter_launcher_icons:main : ajout de l'icon sur l'ecran de l'utilisateur 
+    - dart run flutter_launcher_icons :: ajout de l'icon sur l'ecran de l'utilisateur 
+    - dart run flutter_native_splash:create :: splash screen qtatic lors du chargement
 
 ## lancer l'application 
     - flutter run

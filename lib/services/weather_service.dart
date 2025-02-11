@@ -41,8 +41,7 @@ class WeatherService {
       }
     } catch (e) {
       print('Erreur lors de la récupération des données : $e');
-      throw Exception(
-          'Impossible de récupérer la météo. Vérifiez votre connexion.');
+      return [];
     }
   }
 }
