@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  double logoSize = 100; // Taille initiale du logo
+  double logoSize = 280; // Taille initiale du logo
   late AnimationController animationController;
   late Animation<double> fadeAnimation;
 
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen>
     // Animation de l'agrandissement du logo
     Future.delayed(const Duration(seconds: 1), () {
       setState(() {
-        logoSize = 200; // Augmenter la taille du logo
+        logoSize = 600; // Augmenter la taille du logo
       });
     });
 
@@ -55,9 +55,8 @@ class _SplashScreenState extends State<SplashScreen>
         fit: StackFit.expand,
         children: [
           // Image de fond
-          Image.asset(
-            'assets/background.jpg',
-            fit: BoxFit.cover,
+          ColoredBox(
+            color: Colors.white38,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -73,21 +72,27 @@ class _SplashScreenState extends State<SplashScreen>
                       Image.asset('assets/logo.png'), // Remplace par ton logo
                 ),
               ),
-              const SizedBox(height: 20),
+              Spacer(),
               // Branding
-              const Text(
-                "WeatherNow,",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: const Text(
+                  "WeatherNow,",
+                  style: TextStyle(
+                    fontSize: 34,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-              const Text(
-                "prepared for any eventuality",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white70,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: const Text(
+                  "la météo a votre portée",
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.black38,
+                  ),
                 ),
               ),
             ],
