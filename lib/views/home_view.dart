@@ -42,6 +42,10 @@ class _HomePageState extends ConsumerState<HomePage> {
       body: Stack(
         children: [
           ColoredBox(color: Colors.white10),
+          // Image.asset(
+          //   "assets/splash.jpg",
+          //   height: ScreenSize.getHeight(context),
+          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -68,7 +72,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   child: TextField(
                     controller: searchController,
                     decoration: InputDecoration(
-                      hintText: 'Rechercher une ville ...',
+                      hintText: 'Check a city ...',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
@@ -84,7 +88,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
               // affichage des données
               Expanded(
                 child: SingleChildScrollView(
@@ -93,15 +96,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                     children: [
                       !userConnected
                           ? MessageWidget(
-                              message:
-                                  "Oups! Vous n'êtes pas connecté à internet",
-                              imagePath: 'assets/offline.jpg',
+                              message: "Oups! you are offline",
+                              imagePath: 'assets/offline.png',
                             )
                           : weatherAsync.when(
                               data: (cityWeather) {
                                 if (cityWeather.isEmpty) {
                                   return MessageWidget(
-                                    message: "Oups! Aucune donnée disponible",
+                                    message: "Oups! any data found",
                                     imagePath: 'assets/no_data.png',
                                   );
                                 }
@@ -139,7 +141,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
                                       Align(
                                         alignment: Alignment.centerLeft,
-                                        child: Text("Prochains jours",
+                                        child: Text("Next days",
                                             style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold)),
@@ -160,7 +162,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) =>
-                                                        DetailPage(city: day),
+                                                        DetailPage(
+                                                      city: day,
+                                                      cityName: city,
+                                                    ),
                                                   ),
                                                 );
                                               },
@@ -183,10 +188,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                                   ),
                                 );
                               },
-                              loading: () => SizedBox(
-                                  height: 25,
-                                  width: 25,
-                                  child: CircularProgressIndicator()),
+                              loading: () => Center(
+                                child: SizedBox(
+                                    height: 35,
+                                    width: 35,
+                                    child: CircularProgressIndicator()),
+                              ),
                               error: (err, stack) =>
                                   Text("Erreur: ${err.toString()}"),
                             ),

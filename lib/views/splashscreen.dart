@@ -77,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen>
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: const Text(
-                  "WeatherNow,",
+                  "WeatherNow",
                   style: TextStyle(
                     fontSize: 34,
                     fontWeight: FontWeight.bold,
@@ -87,11 +87,13 @@ class _SplashScreenState extends State<SplashScreen>
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
-                child: const Text(
-                  "La météo a votre portée",
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black38,
+                child: Center(
+                  child: const Text(
+                    "The weather is at your fingertips",
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: Colors.black45,
+                    ),
                   ),
                 ),
               ),

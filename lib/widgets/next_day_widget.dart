@@ -18,7 +18,7 @@ class NextDayWidget extends StatelessWidget {
     return Card(
       elevation: 1,
       child: Container(
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.all(3),
         // decoration: BoxDecoration(color: Colors.yellow.shade200),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

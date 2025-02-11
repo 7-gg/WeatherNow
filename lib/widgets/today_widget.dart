@@ -31,51 +31,49 @@ class TodayWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(1),
         child: Column(
           children: [
             // Texte animé
             Text(
               cityName.toUpperCase(),
               style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 38,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
             )
                 .animate()
                 .fadeIn(duration: 1.seconds) // Animation d'apparition
                 .moveY(begin: -50, end: 0, duration: 1.seconds),
-            Text(
-              date,
-              style: TextStyle(fontSize: 13, color: Colors.black),
-            ),
+            SizedBox(width: 30, child: Divider()),
             SizedBox(height: 15),
             WeatherCardWidget(
                 temperature: temperature,
                 description: description,
                 date: date,
                 iconPath: iconPath),
-            SizedBox(height: 15),
+            SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 WeatherIconWidget(
                     iconPath: "assets/cloudiness.png",
-                    value: 'nuage',
+                    value: 'cloud',
                     label: cloudiness),
                 SizedBox(width: ScreenSize.getWidth(context) * 0.12),
                 WeatherIconWidget(
                     iconPath: 'assets/humidity.png',
-                    value: 'Humidité',
+                    value: 'Humidity',
                     label: humidity),
                 SizedBox(width: ScreenSize.getWidth(context) * 0.12),
                 WeatherIconWidget(
                     iconPath: 'assets/windspeed.png',
-                    value: 'vitesse',
+                    value: 'wind speed',
                     label: windSpeed),
               ],
-            )
+            ),
+            SizedBox(height: 25),
           ],
         ),
       ),
