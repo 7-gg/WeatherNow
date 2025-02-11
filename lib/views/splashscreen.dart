@@ -91,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen>
                   child: const Text(
                     "The weather is at your fingertips",
                     style: TextStyle(
-                      fontSize: 28,
+                      fontSize: 22,
                       color: Colors.black45,
                     ),
                   ),

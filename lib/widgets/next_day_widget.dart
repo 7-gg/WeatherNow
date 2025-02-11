@@ -7,19 +7,26 @@ class NextDayWidget extends StatelessWidget {
   final String temperature;
 
   const NextDayWidget({
-    Key? key,
+    super.key,
     required this.iconPath,
     required this.date,
     required this.temperature,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 1,
+      elevation: 0.4,
       child: Container(
-        margin: EdgeInsets.all(3),
-        // decoration: BoxDecoration(color: Colors.yellow.shade200),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.white, const Color.fromARGB(255, 245, 208, 203)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        margin: EdgeInsets.all(5),
+        padding: EdgeInsets.all(2),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -27,16 +34,17 @@ class NextDayWidget extends StatelessWidget {
             Image.asset(
               iconPath,
               width: ScreenSize.getWidth(context) * 0.14,
+              height: 45,
             ),
             SizedBox(height: 10),
             //date
             Text(
-              '$date',
+              date,
               style: TextStyle(fontSize: 11),
             ),
             SizedBox(height: 2),
             // temperature
-            Text('$temperature')
+            Text(temperature)
           ],
         ),
       ),

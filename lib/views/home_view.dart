@@ -41,10 +41,22 @@ class _HomePageState extends ConsumerState<HomePage> {
     return Scaffold(
       body: Stack(
         children: [
-          ColoredBox(color: Colors.white10),
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.white,
+                  const Color.fromARGB(255, 245, 208, 203)
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+          ),
           // Image.asset(
-          //   "assets/splash.jpg",
+          //   "assets/back.jpeg",
           //   height: ScreenSize.getHeight(context),
+          //   width: ScreenSize.getWidth(context),
           // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,

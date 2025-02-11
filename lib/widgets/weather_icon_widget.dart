@@ -33,7 +33,10 @@ class WeatherIconWidget extends StatelessWidget {
         ),
         Text(
           label,
-          style: const TextStyle(fontSize: 14, color: Colors.grey),
+          style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.blueGrey),
         ),
       ],
     );

@@ -54,7 +54,14 @@ class _DetailPageState extends State<DetailPage> {
                 width: ScreenSize.getWidth(context),
                 padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.9), // Fond semi-transparent
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.white.withOpacity(0.9),
+                      Color.fromARGB(255, 203, 144, 144)
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40),
@@ -92,7 +99,7 @@ class _DetailPageState extends State<DetailPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 50),
                     // Description de la météo et température
                     Center(
                       child: Column(
@@ -105,7 +112,7 @@ class _DetailPageState extends State<DetailPage> {
                               color: Colors.black87,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 30),
                           Text(
                             '${widget.city.temperature}°C',
                             style: TextStyle(
@@ -117,7 +124,7 @@ class _DetailPageState extends State<DetailPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 50),
                     // Détails supplémentaires
                     Row(
                       children: [
@@ -136,6 +143,7 @@ class _DetailPageState extends State<DetailPage> {
                           '${widget.city.visibility} km',
                           style: TextStyle(
                             fontSize: 16,
+                            fontWeight: FontWeight.bold,
                             color: Colors.blueGrey[600],
                           ),
                         )
