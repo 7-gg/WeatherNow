@@ -22,10 +22,9 @@
     - création de compte OpenWeatherMap pour obtenir la clé API
     - installation des dépendances (flutter pub get)
     - utilisation de https pour l'appel api et la récupération des données dans le service
-    - utilisation de riverpod pour     
-
+    - utilisation de riverpod pour la gestion d'etat
     - dart run flutter_launcher_icons :: ajout de l'icon sur l'ecran de l'utilisateur 
-    - dart run flutter_native_splash:create :: splash screen qtatic lors du chargement
+    - dart run flutter_native_splash:create :: splash screen static lors du chargement
 
 ## lancer l'application 
     - flutter run

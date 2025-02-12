@@ -8,12 +8,12 @@ class WeatherCardWidget extends StatelessWidget {
   final String iconPath;
 
   const WeatherCardWidget({
-    Key? key,
+    super.key,
     required this.temperature,
     required this.description,
     required this.date,
     required this.iconPath,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

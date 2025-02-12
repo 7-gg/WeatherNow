@@ -3,8 +3,7 @@ String weatherDescriptionIcon(String description) {
   if (description.toLowerCase().contains("wind") ||
       description.toLowerCase().contains("vent")) {
     return 'assets/wind_icon.png'; // Icône pour un ciel nuageux
-  }
-  if (description.toLowerCase().contains("cloud") ||
+  } else if (description.toLowerCase().contains("cloud") ||
       description.toLowerCase().contains("nuage")) {
     return 'assets/cloud_icon.png'; // Icône
   } else if (description.toLowerCase().contains("storm") ||
@@ -26,8 +25,7 @@ String weatherDescriptionImage(String description) {
   if (description.toLowerCase().contains("wind") ||
       description.toLowerCase().contains("vent")) {
     return 'assets/wind.jpg'; // Icône pour un ciel
-  }
-  if (description.toLowerCase().contains("cloud") ||
+  } else if (description.toLowerCase().contains("cloud") ||
       description.toLowerCase().contains("nuage")) {
     return 'assets/cloud.jpg'; // Icône pour un ciel nuageux
   } else if (description.toLowerCase().contains("storm") ||

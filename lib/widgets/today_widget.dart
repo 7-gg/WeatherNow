@@ -16,7 +16,7 @@ class TodayWidget extends StatelessWidget {
 
   // Constructeur
   const TodayWidget({
-    Key? key,
+    super.key,
     required this.cityName,
     required this.description,
     required this.temperature,
@@ -25,7 +25,7 @@ class TodayWidget extends StatelessWidget {
     required this.cloudiness,
     required this.humidity,
     required this.windSpeed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

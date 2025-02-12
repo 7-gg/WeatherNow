@@ -20,6 +20,7 @@ ThemeData appTheme() {
     ),
     iconTheme: IconThemeData(color: deepRed),
     colorScheme: ColorScheme.fromSwatch(
+        // ignore: deprecated_member_use
         primarySwatch: MaterialColor(deepRed.value, {
       50: Color(0xFFFAE6E6), // Très clair
       100: Color(0xFFF5B2B2), // Clair

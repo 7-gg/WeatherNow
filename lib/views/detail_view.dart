@@ -27,10 +27,6 @@ class _DetailPageState extends State<DetailPage> {
                 width: ScreenSize.getWidth(context),
                 fit: BoxFit.cover,
               ),
-              // Appliquer un flou à l'arrière-plan
-              Container(
-                color: Colors.black.withOpacity(0.3), // Ajoute un filtre sombre
-              ),
               Positioned(
                 top: 40,
                 left: 20,
@@ -50,14 +46,14 @@ class _DetailPageState extends State<DetailPage> {
             children: [
               Spacer(),
               Container(
-                height: ScreenSize.getHeight(context) * 0.75,
+                height: ScreenSize.getHeight(context) * 0.78,
                 width: ScreenSize.getWidth(context),
                 padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Colors.white.withOpacity(0.9),
-                      Color.fromARGB(255, 203, 144, 144)
+                      Color.fromARGB(255, 240, 209, 209)
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,

@@ -13,6 +13,7 @@ class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
@@ -53,11 +54,6 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
             ),
           ),
-          // Image.asset(
-          //   "assets/back.jpeg",
-          //   height: ScreenSize.getHeight(context),
-          //   width: ScreenSize.getWidth(context),
-          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -128,7 +124,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                 setState(() {
                                   iconPath = weatherDescriptionIcon(
                                       today.weatherDescription);
-                                  print('icon retenu $iconPath');
+                                  // print('icon retenu $iconPath');
                                 });
                                 //  ..
                                 return Padding(
@@ -150,7 +146,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                                           windSpeed:
                                               today.windSpeed.toString()),
                                       // les jours suivants
-
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text("Next days",
@@ -165,7 +160,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                         child: ListView.builder(
                                           scrollDirection: Axis.horizontal,
                                           shrinkWrap: true,
-                                          itemCount: cityWeather.length,
+                                          itemCount: nextDays.length,
                                           itemBuilder: (context, index) {
                                             final day = cityWeather[index];
                                             return GestureDetector(
@@ -183,12 +178,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                                               },
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.all(5),
+                                                    const EdgeInsets.all(3),
                                                 child: NextDayWidget(
                                                     iconPath:
                                                         weatherDescriptionIcon(day
                                                             .weatherDescription),
-                                                    date: "${day.date}",
+                                                    date: day.date,
                                                     temperature:
                                                         "${day.temperature}°C"),
                                               ), // Card(

@@ -7,10 +7,10 @@ class MessageWidget extends StatelessWidget {
 
   // Constructeur
   const MessageWidget({
-    Key? key,
+    super.key,
     required this.message,
     required this.imagePath,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

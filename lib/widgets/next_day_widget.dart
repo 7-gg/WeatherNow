@@ -16,17 +16,19 @@ class NextDayWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 0.4,
+      elevation: 0.6,
       child: Container(
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(40), topRight: Radius.circular(40)),
           gradient: LinearGradient(
             colors: [Colors.white, const Color.fromARGB(255, 245, 208, 203)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
-        margin: EdgeInsets.all(5),
         padding: EdgeInsets.all(2),
+        width: 75,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -40,11 +42,14 @@ class NextDayWidget extends StatelessWidget {
             //date
             Text(
               date,
-              style: TextStyle(fontSize: 11),
+              style: TextStyle(fontSize: 11, color: Colors.black),
             ),
-            SizedBox(height: 2),
+            SizedBox(height: 5),
             // temperature
-            Text(temperature)
+            Text(
+              temperature,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            )
           ],
         ),
       ),

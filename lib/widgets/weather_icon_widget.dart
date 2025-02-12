@@ -6,11 +6,11 @@ class WeatherIconWidget extends StatelessWidget {
   final String label;
 
   const WeatherIconWidget({
-    Key? key,
+    super.key,
     required this.iconPath,
     required this.value,
     required this.label,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
