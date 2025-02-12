@@ -5,9 +5,9 @@ import 'package:weathernow/helpers/screen_size.dart';
 import 'package:weathernow/providers/weather_provider.dart';
 import 'package:weathernow/services/check_connexion.dart';
 import 'package:weathernow/views/detail_view.dart';
-import 'package:weathernow/Components/message.dart';
-import 'package:weathernow/Components/next_day.dart';
-import 'package:weathernow/Components/today.dart';
+import 'package:weathernow/components/message.dart';
+import 'package:weathernow/components/next_day.dart';
+import 'package:weathernow/components/today.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});

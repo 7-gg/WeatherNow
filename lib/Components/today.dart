@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:weathernow/helpers/screen_size.dart';
-import 'package:weathernow/Components/weather_card.dart';
-import 'package:weathernow/Components/weather_icon.dart';
+import 'package:weathernow/components/weather_card.dart';
+import 'package:weathernow/components/weather_icon.dart';
 
 class TodayWidget extends StatelessWidget {
   final String description;

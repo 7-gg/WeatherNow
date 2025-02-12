@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:weathernow/Components/message.dart';
+import 'package:weathernow/components/message.dart';
 
 void main() {
   testWidgets('MessageWidget displays the message and image correctly',

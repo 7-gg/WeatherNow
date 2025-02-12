@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weathernow/helpers/function.dart';
 import 'package:weathernow/helpers/screen_size.dart';
 import 'package:weathernow/models/city_model.dart';
-import 'package:weathernow/Components/weather_icon.dart';
+import 'package:weathernow/components/weather_icon.dart';
 
 class DetailPage extends StatefulWidget {
   final City city;
