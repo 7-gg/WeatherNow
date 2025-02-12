@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:weathernow/helper/function.dart';
-import 'package:weathernow/helper/screen_size.dart';
+import 'package:weathernow/helpers/function.dart';
+import 'package:weathernow/helpers/screen_size.dart';
 import 'package:weathernow/models/city_model.dart';
-import 'package:weathernow/widgets/weather_icon_widget.dart';
+import 'package:weathernow/Components/weather_icon.dart';
 
 class DetailPage extends StatefulWidget {
   final City city;
@@ -152,19 +152,22 @@ class _DetailPageState extends State<DetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         WeatherIconWidget(
-                            iconPath: "assets/cloudiness.png",
-                            value: 'cloud',
-                            label: widget.city.cloudiness.toString()),
+                          iconPath: "assets/cloudiness.png",
+                          value: 'cloud',
+                          label: widget.city.cloudiness.toString(),
+                        ),
                         SizedBox(width: ScreenSize.getWidth(context) * 0.12),
                         WeatherIconWidget(
-                            iconPath: 'assets/humidity.png',
-                            value: 'Humidity',
-                            label: widget.city.humidity.toString()),
+                          iconPath: 'assets/humidity.png',
+                          value: 'Humidity',
+                          label: widget.city.humidity.toString(),
+                        ),
                         SizedBox(width: ScreenSize.getWidth(context) * 0.12),
                         WeatherIconWidget(
-                            iconPath: 'assets/windspeed.png',
-                            value: 'wind speed',
-                            label: widget.city.windSpeed.toString()),
+                          iconPath: 'assets/windspeed.png',
+                          value: 'wind speed',
+                          label: widget.city.windSpeed.toString(),
+                        ),
                       ],
                     ),
                   ],

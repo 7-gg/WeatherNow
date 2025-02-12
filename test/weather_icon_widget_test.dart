@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:weathernow/widgets/weather_icon_widget.dart';
+import 'package:weathernow/Components/weather_icon.dart';
 
 void main() {
   testWidgets('WeatherIconWidget displays the correct icon, value, and label',

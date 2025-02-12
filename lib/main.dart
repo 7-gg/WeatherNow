@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weathernow/helper/app_theme.dart';
+import 'package:weathernow/helpers/app_theme.dart';
 import 'package:weathernow/views/splashscreen.dart';
 
 void main() {

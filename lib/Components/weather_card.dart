@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weathernow/helper/screen_size.dart';
+import 'package:weathernow/helpers/screen_size.dart';
 
 class WeatherCardWidget extends StatelessWidget {
   final String temperature;

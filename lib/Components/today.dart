@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:weathernow/helper/screen_size.dart';
-import 'package:weathernow/widgets/weather_card_widget.dart';
-import 'package:weathernow/widgets/weather_icon_widget.dart';
+import 'package:weathernow/helpers/screen_size.dart';
+import 'package:weathernow/Components/weather_card.dart';
+import 'package:weathernow/Components/weather_icon.dart';
 
 class TodayWidget extends StatelessWidget {
   final String description;
@@ -48,10 +48,11 @@ class TodayWidget extends StatelessWidget {
             SizedBox(width: 30, child: Divider()),
             SizedBox(height: 15),
             WeatherCardWidget(
-                temperature: temperature,
-                description: description,
-                date: date,
-                iconPath: iconPath),
+              temperature: temperature,
+              description: description,
+              date: date,
+              iconPath: iconPath,
+            ),
             SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

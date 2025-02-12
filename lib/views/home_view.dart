@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weathernow/helper/function.dart';
-import 'package:weathernow/helper/screen_size.dart';
+import 'package:weathernow/helpers/function.dart';
+import 'package:weathernow/helpers/screen_size.dart';
 import 'package:weathernow/providers/weather_provider.dart';
 import 'package:weathernow/services/check_connexion.dart';
 import 'package:weathernow/views/detail_view.dart';
-import 'package:weathernow/widgets/message_widget.dart';
-import 'package:weathernow/widgets/next_day_widget.dart';
-import 'package:weathernow/widgets/today_widget.dart';
+import 'package:weathernow/Components/message.dart';
+import 'package:weathernow/Components/next_day.dart';
+import 'package:weathernow/Components/today.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -134,24 +134,25 @@ class _HomePageState extends ConsumerState<HomePage> {
                                     children: [
                                       // Carte pour la météo du jour
                                       TodayWidget(
-                                          cityName: city,
-                                          description: today.weatherDescription,
-                                          temperature:
-                                              today.temperature.toString(),
-                                          date: today.date,
-                                          iconPath: iconPath,
-                                          cloudiness:
-                                              today.cloudiness.toString(),
-                                          humidity: today.humidity.toString(),
-                                          windSpeed:
-                                              today.windSpeed.toString()),
+                                        cityName: city,
+                                        description: today.weatherDescription,
+                                        temperature:
+                                            today.temperature.toString(),
+                                        date: today.date,
+                                        iconPath: iconPath,
+                                        cloudiness: today.cloudiness.toString(),
+                                        humidity: today.humidity.toString(),
+                                        windSpeed: today.windSpeed.toString(),
+                                      ),
                                       // les jours suivants
                                       Align(
                                         alignment: Alignment.centerLeft,
-                                        child: Text("Next days",
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold)),
+                                        child: Text(
+                                          "Next days",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                       ),
                                       SizedBox(height: 20),
                                       SizedBox(
@@ -197,9 +198,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                               },
                               loading: () => Center(
                                 child: SizedBox(
-                                    height: 35,
-                                    width: 35,
-                                    child: CircularProgressIndicator()),
+                                  height: 35,
+                                  width: 35,
+                                  child: CircularProgressIndicator(),
+                                ),
                               ),
                               error: (err, stack) =>
                                   Text("Erreur: ${err.toString()}"),
