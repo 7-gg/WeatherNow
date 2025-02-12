@@ -6,7 +6,7 @@ void main() {
   testWidgets('WeatherIconWidget displays the correct icon, value, and label',
       (WidgetTester tester) async {
     // Arrange: Créez un widget de test
-    const iconPath = 'assets/sun_icon.png';
+    const iconPath = 'assets/images/sun_icon.png';
     const value = '23°C';
     const label = 'Temperature';
 

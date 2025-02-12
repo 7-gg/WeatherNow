@@ -28,11 +28,11 @@ flutter_native_splash:
   ios: true
   web: false
   color: "#fffff0"
-  image: "assets/logo.png"
+  image: "assets/images/logo.png"
 
 flutter_launcher_icons:  
   android: "launcher_icon"
-  image_path: "assets/logo.png" 
+  image_path: "assets/images/logo.png" 
   ios: true
 
 # For information on the generic Dart part of this file, see the
@@ -48,7 +48,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/logo.png
+    - assets/images/logo.png
+    - assets/images/
+    - assets/fonts/
     - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -152,19 +152,19 @@ class _DetailPageState extends State<DetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         WeatherIconWidget(
-                          iconPath: "assets/cloudiness.png",
+                          iconPath: "assets/images/cloudiness.png",
                           value: 'cloud',
                           label: widget.city.cloudiness.toString(),
                         ),
                         SizedBox(width: ScreenSize.getWidth(context) * 0.12),
                         WeatherIconWidget(
-                          iconPath: 'assets/humidity.png',
+                          iconPath: 'assets/images/humidity.png',
                           value: 'Humidity',
                           label: widget.city.humidity.toString(),
                         ),
                         SizedBox(width: ScreenSize.getWidth(context) * 0.12),
                         WeatherIconWidget(
-                          iconPath: 'assets/windspeed.png',
+                          iconPath: 'assets/images/windspeed.png',
                           value: 'wind speed',
                           label: widget.city.windSpeed.toString(),
                         ),

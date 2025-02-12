@@ -105,14 +105,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                       !userConnected
                           ? MessageWidget(
                               message: "Oups! you are offline",
-                              imagePath: 'assets/offline.png',
+                              imagePath: 'assets/images/offline.png',
                             )
                           : weatherAsync.when(
                               data: (cityWeather) {
                                 if (cityWeather.isEmpty) {
                                   return MessageWidget(
                                     message: "Oups! any data found",
-                                    imagePath: 'assets/no_data.png',
+                                    imagePath: 'assets/images/no_data.png',
                                   );
                                 }
                                 final today =

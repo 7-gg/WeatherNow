@@ -7,7 +7,7 @@ void main() {
       (WidgetTester tester) async {
     // Arrange : Définir le message et le chemin de l'image
     const message = 'Hello, World!';
-    const imagePath = 'assets/back.jpeg';
+    const imagePath = 'assets/images/back.jpeg';
     // Chargez le widget MessageWidget
     await tester.pumpWidget(
       MaterialApp(

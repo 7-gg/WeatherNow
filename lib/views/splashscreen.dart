@@ -68,8 +68,8 @@ class _SplashScreenState extends State<SplashScreen>
                 height: logoSize,
                 child: FadeTransition(
                   opacity: fadeAnimation,
-                  child:
-                      Image.asset('assets/logo.png'), // Remplace par ton logo
+                  child: Image.asset(
+                      'assets/images/logo.png'), // Remplace par ton logo
                 ),
               ),
               Spacer(),

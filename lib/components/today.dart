@@ -59,17 +59,17 @@ class TodayWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 WeatherIconWidget(
-                    iconPath: "assets/cloudiness.png",
+                    iconPath: "assets/images/cloudiness.png",
                     value: 'cloud',
                     label: cloudiness),
                 SizedBox(width: ScreenSize.getWidth(context) * 0.12),
                 WeatherIconWidget(
-                    iconPath: 'assets/humidity.png',
+                    iconPath: 'assets/images/humidity.png',
                     value: 'Humidity',
                     label: humidity),
                 SizedBox(width: ScreenSize.getWidth(context) * 0.12),
                 WeatherIconWidget(
-                    iconPath: 'assets/windspeed.png',
+                    iconPath: 'assets/images/windspeed.png',
                     value: 'wind speed',
                     label: windSpeed),
               ],
