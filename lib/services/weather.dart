@@ -4,15 +4,17 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:weathernow/models/city.dart';
+import 'package:weathernow/models/location.dart';
 
 class WeatherService {
   final String apiKey = 'b99077846337e6e64800b68d5b80cdae';
 
-  Future<List<City>> fetchWeather(String city) async {
-    final url =
-        'https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=$apiKey&units=metric';
+  Future<List<City>> fetchWeather(String city, Location location) async {
+    final url = city != ""
+        ? 'https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=$apiKey&units=metric'
+        : 'https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric';
 
-    print('Call API URL: $url');
+    print('Call API URL WeatherService');
 
     try {
       final response = await http.get(Uri.parse(url));
