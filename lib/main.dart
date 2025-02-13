@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weathernow/helpers/app_theme.dart';
-import 'package:weathernow/views/splashscreen.dart';
+import 'package:weathernow/views/check_internet.dart';
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'WeatherNow',
       theme: appTheme(),
-      home: SplashScreen(),
+      home: CheckInternetPage(),
     );
   }
 }

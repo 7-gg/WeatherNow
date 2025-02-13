@@ -22,9 +22,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     // Animation de l'agrandissement du logo
     Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        logoSize = 600; // Augmenter la taille du logo
-      });
+      logoSize = 600; // Augmenter la taille du logo
     });
 
     // Animation de clignotement
@@ -68,8 +66,7 @@ class _SplashScreenState extends State<SplashScreen>
                 height: logoSize,
                 child: FadeTransition(
                   opacity: fadeAnimation,
-                  child: Image.asset(
-                      'assets/images/logo.png'), // Remplace par ton logo
+                  child: Image.asset('assets/images/logo.png'),
                 ),
               ),
               Spacer(),
@@ -91,7 +88,7 @@ class _SplashScreenState extends State<SplashScreen>
                   child: const Text(
                     "The weather is at your fingertips",
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 20,
                       color: Colors.black45,
                     ),
                   ),
