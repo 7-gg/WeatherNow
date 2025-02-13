@@ -3,7 +3,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:weathernow/models/city_model.dart';
+import 'package:weathernow/models/city.dart';
 
 class WeatherService {
   final String apiKey = 'b99077846337e6e64800b68d5b80cdae';

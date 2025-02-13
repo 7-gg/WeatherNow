@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:weathernow/views/home_view.dart';
+import 'package:weathernow/views/home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

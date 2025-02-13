@@ -1,6 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
-import 'package:weathernow/models/city_model.dart';
+import 'package:weathernow/models/city.dart';
 
 void main() {
   test('City model should correctly store attributes', () {

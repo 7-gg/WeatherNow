@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weathernow/helpers/function.dart';
 import 'package:weathernow/helpers/screen_size.dart';
-import 'package:weathernow/models/city_model.dart';
 import 'package:weathernow/components/weather_icon.dart';
+import 'package:weathernow/providers/city_name.dart';
+import 'package:weathernow/providers/detail.dart';
 
-class DetailPage extends StatefulWidget {
-  final City city;
-  final String cityName;
-  const DetailPage({super.key, required this.city, required this.cityName});
+class DetailPage extends ConsumerWidget {
+  const DetailPage({super.key});
 
   @override
-  State<DetailPage> createState() => _DetailPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    var cityName = ref.watch(cityNameProvider);
+    // Récupère la valeur de `City` depuis le provider
+    final city = ref.watch(detailProvider);
 
-class _DetailPageState extends State<DetailPage> {
-  @override
-  Widget build(BuildContext context) {
+// ..
     return Scaffold(
       body: Stack(
         children: [
@@ -23,7 +23,7 @@ class _DetailPageState extends State<DetailPage> {
           Stack(
             children: [
               Image.asset(
-                weatherDescriptionImage(widget.city.weatherDescription),
+                weatherDescriptionImage(city!.weatherDescription),
                 width: ScreenSize.getWidth(context),
                 fit: BoxFit.cover,
               ),
@@ -77,7 +77,7 @@ class _DetailPageState extends State<DetailPage> {
                       child: Column(
                         children: [
                           Text(
-                            widget.cityName,
+                            cityName!,
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
@@ -86,7 +86,7 @@ class _DetailPageState extends State<DetailPage> {
                           ),
                           Divider(color: Colors.grey),
                           Text(
-                            widget.city.date,
+                            city.date,
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.grey.shade700,
@@ -101,7 +101,7 @@ class _DetailPageState extends State<DetailPage> {
                       child: Column(
                         children: [
                           Text(
-                            widget.city.weatherDescription,
+                            city.weatherDescription,
                             style: TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.w600,
@@ -110,7 +110,7 @@ class _DetailPageState extends State<DetailPage> {
                           ),
                           SizedBox(height: 30),
                           Text(
-                            '${widget.city.temperature}°C',
+                            '${city.temperature}°C',
                             style: TextStyle(
                               fontSize: 48,
                               fontWeight: FontWeight.bold,
@@ -136,7 +136,7 @@ class _DetailPageState extends State<DetailPage> {
                         ),
                         Spacer(),
                         Text(
-                          '${widget.city.visibility} km',
+                          '${city.visibility} km',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -154,19 +154,19 @@ class _DetailPageState extends State<DetailPage> {
                         WeatherIconWidget(
                           iconPath: "assets/images/cloudiness.png",
                           value: 'cloud',
-                          label: widget.city.cloudiness.toString(),
+                          label: city.cloudiness.toString(),
                         ),
                         SizedBox(width: ScreenSize.getWidth(context) * 0.12),
                         WeatherIconWidget(
                           iconPath: 'assets/images/humidity.png',
                           value: 'Humidity',
-                          label: widget.city.humidity.toString(),
+                          label: city.humidity.toString(),
                         ),
                         SizedBox(width: ScreenSize.getWidth(context) * 0.12),
                         WeatherIconWidget(
                           iconPath: 'assets/images/windspeed.png',
                           value: 'wind speed',
-                          label: widget.city.windSpeed.toString(),
+                          label: city.windSpeed.toString(),
                         ),
                       ],
                     ),

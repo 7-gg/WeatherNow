@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weathernow/helpers/function.dart';
 import 'package:weathernow/helpers/screen_size.dart';
-import 'package:weathernow/providers/weather_provider.dart';
+import 'package:weathernow/providers/city_name.dart';
+import 'package:weathernow/providers/detail.dart';
+import 'package:weathernow/providers/weather.dart';
 import 'package:weathernow/services/check_connexion.dart';
-import 'package:weathernow/views/detail_view.dart';
+import 'package:weathernow/views/detail.dart';
 import 'package:weathernow/components/message.dart';
 import 'package:weathernow/components/next_day.dart';
 import 'package:weathernow/components/today.dart';
@@ -19,7 +21,6 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage> {
   final TextEditingController searchController = TextEditingController();
-  String city = 'Lomé';
   bool userConnected = false;
 
   @override
@@ -37,7 +38,8 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final weatherAsync = ref.watch(weatherProvider(city));
+    var cityName = ref.watch(cityNameProvider);
+    final weatherAsync = ref.watch(weatherProvider(cityName!));
     //
     return Scaffold(
       body: Stack(
@@ -86,11 +88,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                       ),
                       suffixIcon: IconButton(
                         icon: Icon(Icons.search),
-                        onPressed: () {
-                          setState(() {
-                            city = searchController.text;
-                          });
-                        },
+                        onPressed: () =>
+                            updateCityName(ref, searchController.text),
                       ),
                     ),
                   ),
@@ -119,13 +118,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                                     cityWeather.first; // La météo du jour
                                 final nextDays = cityWeather
                                     .sublist(1); // Les jours suivants
-                                // ..
-                                String iconPath = "";
-                                setState(() {
-                                  iconPath = weatherDescriptionIcon(
-                                      today.weatherDescription);
-                                  // print('icon retenu $iconPath');
-                                });
                                 //  ..
                                 return Padding(
                                   padding: const EdgeInsets.all(16),
@@ -134,12 +126,13 @@ class _HomePageState extends ConsumerState<HomePage> {
                                     children: [
                                       // Carte pour la météo du jour
                                       TodayWidget(
-                                        cityName: city,
+                                        cityName: cityName,
                                         description: today.weatherDescription,
                                         temperature:
                                             today.temperature.toString(),
                                         date: today.date,
-                                        iconPath: iconPath,
+                                        iconPath: weatherDescriptionIcon(
+                                            today.weatherDescription),
                                         cloudiness: today.cloudiness.toString(),
                                         humidity: today.humidity.toString(),
                                         windSpeed: today.windSpeed.toString(),
@@ -164,30 +157,38 @@ class _HomePageState extends ConsumerState<HomePage> {
                                           itemCount: nextDays.length,
                                           itemBuilder: (context, index) {
                                             final day = cityWeather[index];
-                                            return GestureDetector(
-                                              onTap: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        DetailPage(
-                                                      city: day,
-                                                      cityName: city,
-                                                    ),
-                                                  ),
+
+                                            return Consumer(
+                                              builder: (context, watch, child) {
+                                                return GestureDetector(
+                                                  onTap: () {
+                                                    // Met à jour le provider avec l'objet City sélectionné
+                                                    ref
+                                                        .read(detailProvider
+                                                            .notifier)
+                                                        .state = day;
+                                                    // appeler la route
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            DetailPage(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(3),
+                                                    child: NextDayWidget(
+                                                        iconPath:
+                                                            weatherDescriptionIcon(day
+                                                                .weatherDescription),
+                                                        date: day.date,
+                                                        temperature:
+                                                            "${day.temperature}°C"),
+                                                  ), // Card(
                                                 );
                                               },
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(3),
-                                                child: NextDayWidget(
-                                                    iconPath:
-                                                        weatherDescriptionIcon(day
-                                                            .weatherDescription),
-                                                    date: day.date,
-                                                    temperature:
-                                                        "${day.temperature}°C"),
-                                              ), // Card(
                                             );
                                           },
                                         ),
