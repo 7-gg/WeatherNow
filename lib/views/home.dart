@@ -104,51 +104,9 @@ class _HomePageState extends ConsumerState<HomePage> {
               Expanded(
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
-                  child: cityName == ""
-                      ? Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                'assets/images/city.svg',
-                                width: ScreenSize.getWidth(context) *
-                                    0.2, // Largeur
-                                height: ScreenSize.getHeight(context) *
-                                    0.3, // Hauteur
-                              )
-                                  .animate()
-                                  .fadeIn(
-                                      duration:
-                                          1.seconds) // Animation d'apparition
-                                  .moveY(
-                                      begin: -50, end: 0, duration: 1.seconds),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 20),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "Welcome to WeatherNow, please enter a city name to get the weather",
-                                    style: TextStyle(
-                                        fontSize: 18, color: Colors.black),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 20),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "Or click on the location icon to get the weather of your current location",
-                                    style: TextStyle(
-                                        fontSize: 18, color: Colors.black),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
+                  child: cityName == "" ||
+                          ref.read(locationProvider.notifier).state == null
+                      ? emptyData()
                       : Column(
                           children: [
                             weatherState.when(
@@ -250,8 +208,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                                   child: CircularProgressIndicator(),
                                 ),
                               ),
-                              error: (err, stack) =>
-                                  Text("Erreur: ${err.toString()}"),
+                              error: (err, stack) => MessageWidget(
+                                message: "Erreur: ${err.toString()}",
+                                imagePath: 'assets/images/no_data.png',
+                              ),
                             ),
                           ],
                         ),
@@ -262,5 +222,44 @@ class _HomePageState extends ConsumerState<HomePage> {
         ],
       ),
     );
+  }
+
+  Widget emptyData() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            'assets/images/city.svg',
+            width: ScreenSize.getWidth(context) * 0.2, // Largeur
+            height: ScreenSize.getHeight(context) * 0.3, // Hauteur
+          )
+              .animate()
+              .fadeIn(duration: 1.seconds) // Animation d'apparition
+              .moveY(begin: -50, end: 0, duration: 1.seconds),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                "Welcome to WeatherNow, please enter a city name to get the weather",
+                style: TextStyle(fontSize: 18, color: Colors.black),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                "Or click on the location icon to get the weather of your current location",
+                style: TextStyle(fontSize: 18, color: Colors.black),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+    //
   }
 }

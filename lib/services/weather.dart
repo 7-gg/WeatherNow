@@ -14,15 +14,15 @@ class WeatherService {
         ? 'https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=$apiKey&units=metric'
         : 'https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric';
 
-    print('Call API URL WeatherService');
+    print('Call API URL WeatherService: $url');
 
     try {
       final response = await http.get(Uri.parse(url));
 
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        print('API Response: $data');
+      final data = json.decode(response.body);
+      print('API Response: $data');
 
+      if (response.statusCode == 200) {
         // Vérifier si la clé 'list' est bien présente dans la réponse
         if (data['list'] == null) {
           throw Exception("Données météo indisponibles");

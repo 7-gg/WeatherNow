@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weathernow/helpers/function.dart';
 import 'package:weathernow/helpers/screen_size.dart';
 import 'package:weathernow/components/weather_icon.dart';
-import 'package:weathernow/providers/city_name.dart';
 import 'package:weathernow/providers/detail.dart';
+import 'package:weathernow/providers/home.dart';
 
 class DetailPage extends ConsumerWidget {
   const DetailPage({super.key});
