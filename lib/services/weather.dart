@@ -10,7 +10,7 @@ class WeatherService {
   final String apiKey = 'b99077846337e6e64800b68d5b80cdae';
 
   Future<List<City>> fetchWeather(String city, Location location) async {
-    final url = city != ""
+    final url = city.isNotEmpty
         ? 'https://api.openweathermap.org/data/2.5/forecast?q=$city&appid=$apiKey&units=metric'
         : 'https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric';
 

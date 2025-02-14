@@ -1,8 +1,11 @@
 String weatherDescriptionIcon(String description) {
   // print("description = $description");
-  if (description.toLowerCase().contains("wind") ||
+  if (description.toLowerCase().contains("snow") ||
+      description.toLowerCase().contains("neige")) {
+    return 'assets/images/cold_icon.png'; // Icône pour un ciel enneigé
+  } else if (description.toLowerCase().contains("wind") ||
       description.toLowerCase().contains("vent")) {
-    return 'assets/images/wind_icon.png'; // Icône pour un ciel nuageux
+    return 'assets/images/wind_icon.png'; // Icône pour un ciel venteux
   } else if (description.toLowerCase().contains("cloud") ||
       description.toLowerCase().contains("nuage")) {
     return 'assets/images/cloud_icon.png'; // Icône
@@ -22,9 +25,12 @@ String weatherDescriptionIcon(String description) {
 
 String weatherDescriptionImage(String description) {
   // print("description = $description");
-  if (description.toLowerCase().contains("wind") ||
+  if (description.toLowerCase().contains("snow") ||
+      description.toLowerCase().contains("neige")) {
+    return 'assets/images/snow.jpg'; // Icône pour un ciel enneigé
+  } else if (description.toLowerCase().contains("wind") ||
       description.toLowerCase().contains("vent")) {
-    return 'assets/images/wind.jpg'; // Icône pour un ciel
+    return 'assets/images/wind.jpg'; // Icône pour un ciel venteux
   } else if (description.toLowerCase().contains("cloud") ||
       description.toLowerCase().contains("nuage")) {
     return 'assets/images/cloud.jpg'; // Icône pour un ciel nuageux

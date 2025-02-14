@@ -38,7 +38,7 @@ class TodayWidget extends StatelessWidget {
             Text(
               cityName.toUpperCase(),
               style: TextStyle(
-                  fontSize: 38,
+                  fontSize: 22,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
             )

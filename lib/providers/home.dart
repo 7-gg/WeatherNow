@@ -3,6 +3,9 @@ import 'package:weathernow/models/city.dart';
 import 'package:weathernow/models/location.dart';
 import 'package:weathernow/services/weather.dart';
 
+// Provider pour le chargement du home page
+final loaderProvider = StateProvider<bool>((ref) => false);
+
 // Provider pour le nom de la ville
 final cityNameProvider = StateProvider<String>((ref) => "");
 
@@ -24,13 +27,6 @@ class WeatherNotifier extends StateNotifier<AsyncValue<List<City>>> {
     final cityName = ref.read(cityNameProvider);
     final location =
         ref.read(locationProvider) ?? Location(latitude: 0, longitude: 0);
-
-    if (cityName.isEmpty) {
-      state = const AsyncValue.error(
-          "Veuillez entrer un nom de ville", StackTrace.empty);
-      return;
-    }
-
     try {
       final weatherData = await weatherService.fetchWeather(cityName, location);
       state = AsyncValue.data(weatherData);

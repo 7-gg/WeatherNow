@@ -1,56 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:weathernow/models/location.dart';
-import 'package:weathernow/providers/home.dart';
 
-class LocationButton extends ConsumerWidget {
-  const LocationButton({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return IconButton(
-      onPressed: () async => await getCurrentLocation(context, ref),
-      icon: Icon(
-        Icons.location_on,
-        size: 32,
-      ),
-    );
-  }
-}
-
-Future<void> getCurrentLocation(BuildContext context, WidgetRef ref) async {
+Future<Position?> getCurrentLocation(
+    BuildContext context, WidgetRef ref) async {
+  print('getCurrentLocation start');
   bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
+    print('Location Service Disabled');
     _showDialog(context, 'Location Service Disabled',
         'Please enable location services.');
-    return;
+    return null;
   }
+  print("location service enabled");
 
   LocationPermission permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied ||
         permission == LocationPermission.deniedForever) {
+      print("location permission denied");
       _showDialog(
           context, 'Permission Denied', 'Please allow location access.');
-      return;
+      return null;
     }
   }
+  print("location permission granted");
 
   try {
     Position position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
     );
-
-    // Mettre à jour la localisation dans Riverpod
-    ref.read(locationProvider.notifier).state =
-        Location(latitude: position.latitude, longitude: position.longitude);
-
-    // Appeler fetchWeather avec la nouvelle localisation
-    ref.read(weatherProvider.notifier).fetchWeather();
+    print("position: $position");
+    return position;
   } catch (e) {
     _showDialog(context, 'Error', 'Unable to get location.');
+    return null;
   }
 }
 
