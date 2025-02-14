@@ -1,39 +1,39 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weathernow/helpers/screen_size.dart';
 import 'package:weathernow/views/home.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
+class _SplashScreenState extends ConsumerState<SplashScreen>
     with SingleTickerProviderStateMixin {
-  double logoSize = 280; // Taille initiale du logo
   late AnimationController animationController;
   late Animation<double> fadeAnimation;
+  late Animation<double> logoSizeAnimation; // Animation for logo size
 
   @override
   void initState() {
     super.initState();
 
-    // Animation de l'agrandissement du logo
-    Future.delayed(const Duration(seconds: 1), () {
-      logoSize = 600; // Augmenter la taille du logo
-    });
-
-    // Animation de clignotement
+    // Animation Controller for fading and resizing logo
     animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
+
     fadeAnimation =
         Tween<double>(begin: 1.0, end: 0.3).animate(animationController);
+    logoSizeAnimation = Tween<double>(begin: 150.0, end: 600.0).animate(
+        CurvedAnimation(parent: animationController, curve: Curves.easeInOut));
 
-    animationController.repeat(reverse: true); // Clignotement infini
+    animationController.repeat(reverse: true); // Fading animation
 
-    // Passer à la page d'accueil après 4 secondes
+    // After 4 seconds, navigate to HomePage
     Timer(const Duration(seconds: 4), () {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (_) => HomePage()));
@@ -48,29 +48,34 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    // The logo size is now managed via the animation
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Image de fond
+          // Background color
           ColoredBox(
             color: Colors.white38,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Animation du logo
-              AnimatedContainer(
-                duration: const Duration(seconds: 1),
-                width: logoSize,
-                height: logoSize,
-                child: FadeTransition(
-                  opacity: fadeAnimation,
-                  child: Image.asset('assets/images/logo.png'),
-                ),
+              // Animated Logo
+              AnimatedBuilder(
+                animation: animationController,
+                builder: (context, child) {
+                  return AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    width: logoSizeAnimation.value, // Animated size
+                    height: logoSizeAnimation.value,
+                    child: FadeTransition(
+                      opacity: fadeAnimation, // Fading effect
+                      child: Image.asset('assets/images/logo.png'),
+                    ),
+                  );
+                },
               ),
-              Spacer(),
-              // Branding
+              SizedBox(height: ScreenSize.getHeight(context) * 0.3),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: const Text(

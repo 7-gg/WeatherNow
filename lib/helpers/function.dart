@@ -19,7 +19,7 @@ String weatherDescriptionIcon(String description) {
       description.toLowerCase().contains("pluie")) {
     return 'assets/images/rain_icon.png'; // Icône pour un ciel pluvieux
   } else {
-    return 'assets/images/sun_icon.png'; // Icône par défaut
+    return 'assets/images/clear_icon.png'; // Icône par défaut
   }
 }
 
