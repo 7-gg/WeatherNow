@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,7 +49,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // Barre de recherche
+              // Search area
               Container(
                 padding: const EdgeInsets.all(16.0),
                 margin: const EdgeInsets.only(bottom: 20),
@@ -69,6 +71,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   padding: const EdgeInsets.only(top: 50, bottom: 15),
                   child: Row(
                     children: [
+                      // Search bar
                       Expanded(
                         child: TextField(
                           controller: searchController,
@@ -80,7 +83,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                             suffixIcon: IconButton(
                               icon: Icon(Icons.search),
                               onPressed: () {
-                                // Vérifie si le champ de recherche est vide
+                                // Check if the search field is empty
                                 if (searchController.text.isEmpty) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
@@ -88,22 +91,22 @@ class _HomePageState extends ConsumerState<HomePage> {
                                     ),
                                   );
                                 } else {
-                                  // active le loader
+                                  // Activate the loader
                                   ref.read(loaderProvider.notifier).state =
                                       true;
-                                  // Met à jour cityName
+                                  // Update cityName
                                   ref.read(cityNameProvider.notifier).state =
                                       searchController.text;
-                                  // Appelle fetchWeather avec la nouvelle ville
+                                  // Call fetchWeather with the new city
                                   ref
                                       .read(weatherProvider.notifier)
                                       .fetchWeather()
                                       .then((value) {
-                                    // désactive le loader
+                                    // Deactivate the loader
                                     ref.read(loaderProvider.notifier).state =
                                         false;
                                   });
-                                  // vider la barre de recherche
+                                  // Clear the search bar
                                   searchController.clear();
                                 }
                               },
@@ -112,34 +115,34 @@ class _HomePageState extends ConsumerState<HomePage> {
                         ),
                       ),
                       SizedBox(width: 10),
-                      // appel api par rapport a la localisation
+                      // API call based on location
                       IconButton(
                         onPressed: () async {
-                          // active le loader
+                          // Activate the loader
                           ref.read(loaderProvider.notifier).state = true;
 
-                          // vider le nom de la ville
+                          // Clear the city name
                           ref.read(cityNameProvider.notifier).state = "";
                           // ..
                           await getCurrentLocation(context, ref).then((value) {
                             if (value != null) {
-                              // Mettre à jour la localisation dans Riverpod
+                              // Update the location in Riverpod
                               ref.read(locationProvider.notifier).state =
                                   Location(
                                       latitude: value.latitude,
                                       longitude: value.longitude);
-                              // Appeler fetchWeather avec la nouvelle localisation
+                              // Call fetchWeather with the new location
                               ref
                                   .read(weatherProvider.notifier)
                                   .fetchWeather()
                                   .then((value) {
-                                // désactive le loader
+                                // Deactivate the loader
                                 ref.read(loaderProvider.notifier).state = false;
                               });
                             } else {
-                              // désactive le loader
+                              // Deactivate the loader
                               ref.read(loaderProvider.notifier).state = false;
-                              // Afficher un message d'erreur
+                              // Show an error message
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content:
@@ -158,7 +161,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ),
                 ),
               ),
-              // affichage des données
+              // Display data
               Expanded(
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
@@ -178,9 +181,17 @@ class _HomePageState extends ConsumerState<HomePage> {
                                       );
                                     }
                                     final today =
-                                        cityWeather.first; // La météo du jour
+                                        cityWeather.first; // Today's weather
                                     final nextDays = cityWeather
-                                        .sublist(1); // Les jours suivants
+                                        .sublist(1); // Following days
+                                    var lat = ref
+                                        .read(locationProvider.notifier)
+                                        .state!
+                                        .latitude;
+                                    var long = ref
+                                        .read(locationProvider.notifier)
+                                        .state!
+                                        .longitude;
                                     //  ..
                                     return Padding(
                                       padding: const EdgeInsets.all(16),
@@ -188,10 +199,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          // Carte pour la météo du jour
+                                          // Card for today's weather
                                           TodayWidget(
                                             cityName: cityName.isEmpty
-                                                ? 'Latitude : ${ref.read(locationProvider.notifier).state!.latitude}\n Longitude : ${ref.read(locationProvider.notifier).state!.longitude}'
+                                                ? 'Latitude : $lat\n Longitude : $long'
                                                 : cityName,
                                             description:
                                                 today.weatherDescription,
@@ -206,7 +217,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                             windSpeed:
                                                 today.windSpeed.toString(),
                                           ),
-                                          // texte
+                                          // Text
                                           Align(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
@@ -217,7 +228,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                             ),
                                           ),
                                           SizedBox(height: 20),
-                                          // Liste des jours suivants
+                                          // List of following days
                                           SizedBox(
                                             height:
                                                 ScreenSize.getHeight(context) *
@@ -234,12 +245,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                                                       (context, watch, child) {
                                                     return GestureDetector(
                                                       onTap: () {
-                                                        // Met à jour le provider avec l'objet City sélectionné
+                                                        // Update the provider with the selected City object
                                                         ref
                                                             .read(detailProvider
                                                                 .notifier)
                                                             .state = day;
-                                                        // Navigue vers la page de détail
+                                                        // Navigate to the detail page
                                                         Navigator.push(
                                                           context,
                                                           MaterialPageRoute(
@@ -272,7 +283,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                                   },
                                   loading: () => loading(),
                                   error: (err, stack) => MessageWidget(
-                                    message: "Erreur: ${err.toString()}",
+                                    message: "Error: ${err.toString()}",
                                     imagePath: 'assets/images/no_data.png',
                                   ),
                                 ),
@@ -304,11 +315,11 @@ class _HomePageState extends ConsumerState<HomePage> {
         children: [
           SvgPicture.asset(
             'assets/images/city.svg',
-            width: ScreenSize.getWidth(context) * 0.2, // Largeur
-            height: ScreenSize.getHeight(context) * 0.3, // Hauteur
+            width: ScreenSize.getWidth(context) * 0.2, // Width
+            height: ScreenSize.getHeight(context) * 0.3, // Height
           )
               .animate()
-              .fadeIn(duration: 1.seconds) // Animation d'apparition
+              .fadeIn(duration: 1.seconds) // Fade-in animation
               .moveY(begin: -50, end: 0, duration: 1.seconds),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weathernow/helpers/function.dart';
@@ -12,14 +14,13 @@ class DetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var cityName = ref.watch(cityNameProvider);
-    // Récupère la valeur de `City` depuis le provider
+    // Retrieve the value of `City` from the provider
     final city = ref.watch(detailProvider);
 
-// ..
     return Scaffold(
       body: Stack(
         children: [
-          // Fond flouté avec une image d'arrière-plan
+          // Blurred background with a background image
           Stack(
             children: [
               Image.asset(
@@ -35,13 +36,13 @@ class DetailPage extends ConsumerWidget {
                   icon: Icon(
                     Icons.arrow_back,
                     size: 30,
-                    color: Colors.redAccent, // Améliorer la visibilité
+                    color: Colors.redAccent, // Improve visibility
                   ),
                 ),
               ),
             ],
           ),
-          // Contenu principal
+          // Main content
           Column(
             children: [
               Spacer(),
@@ -72,12 +73,12 @@ class DetailPage extends ConsumerWidget {
                 ),
                 child: Column(
                   children: [
-                    // Nom de la ville et date
+                    // City name and date
                     Center(
                       child: Column(
                         children: [
                           Text(
-                            cityName!,
+                            cityName,
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
@@ -96,7 +97,7 @@ class DetailPage extends ConsumerWidget {
                       ),
                     ),
                     SizedBox(height: 50),
-                    // Description de la météo et température
+                    // Weather description and temperature
                     Center(
                       child: Column(
                         children: [
@@ -121,7 +122,7 @@ class DetailPage extends ConsumerWidget {
                       ),
                     ),
                     SizedBox(height: 50),
-                    // Détails supplémentaires
+                    // Additional details
                     Row(
                       children: [
                         SizedBox(
@@ -146,7 +147,7 @@ class DetailPage extends ConsumerWidget {
                       ],
                     ),
                     Spacer(),
-                    // Icônes de météo (nuageux, humidité, vitesse du vent)
+                    // Weather icons (cloudiness, humidity, wind speed)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
